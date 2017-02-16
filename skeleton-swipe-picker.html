@@ -1,0 +1,76 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-selector/iron-selector.html">
+<!--
+`skeleton-swipe-picker`
+
+
+@demo demo/index.html 
+-->
+
+<dom-module id="skeleton-swipe-picker">
+    <template>
+        <style is="custom-style">
+            :host {
+                display: block;
+            }
+
+            iron-selector > * {
+                padding: 8px;
+            }
+
+            iron-selector > div {
+                cursor: pointer;
+            }
+
+            .iron-selected {
+                background-color: var(--google-blue-500);
+                color: white;
+            }
+
+        </style>
+        <iron-selector id="swipePicker" attr-for-selected="" selected="">
+            <template is="dom-repeat" items="{{pickerItems}}">
+                <div name$="{{item.value}}">{{item.label}}</div>
+            </template>
+        </iron-selector>
+    </template>
+
+    <script>
+        Polymer({
+
+            is: 'skeleton-swipe-picker',
+
+            properties: {
+                pickerItems: {
+                    type: Array,
+                    value: []
+                }
+            },
+            attached(){
+                this.pickerItems = [
+                    {
+                        label: 'One',
+                        value: 1,
+                        default: false
+                    },
+                    {
+                        label: 'Two',
+                        value: 2,
+                        default: false
+                    },
+                    {
+                        label: 'Three',
+                        value: 3,
+                        default: true
+                    },
+                    {
+                        label: 'Four',
+                        value: 4,
+                        default: false
+                    }
+                ];
+                this.$.swipePicker.selected = 2;
+            }
+        });
+    </script>
+</dom-module>
