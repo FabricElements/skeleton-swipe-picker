@@ -1,76 +1,79 @@
+<!--suppress ALL -->
+
+
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-selector/iron-selector.html">
 <!--
 `skeleton-swipe-picker`
 
 
-@demo demo/index.html 
+@demo demo/index.html
 -->
 
 <dom-module id="skeleton-swipe-picker">
-    <template>
-        <style is="custom-style">
-            :host {
-                display: block;
-            }
+  <template>
+    <style is="custom-style">
+      :host {
+        display: block;
+      }
 
-            iron-selector > * {
-                padding: 8px;
-            }
+      iron-selector > * {
+        padding: 8px;
+      }
 
-            iron-selector > div {
-                cursor: pointer;
-            }
+      iron-selector > div {
+        cursor: pointer;
+      }
 
-            .iron-selected {
-                background-color: var(--google-blue-500);
-                color: white;
-            }
+      .iron-selected {
+        background-color: var(--google-blue-500);
+        color: white;
+      }
 
-        </style>
-        <iron-selector id="swipePicker" attr-for-selected="" selected="">
-            <template is="dom-repeat" items="{{pickerItems}}">
-                <div name$="{{item.value}}">{{item.label}}</div>
-            </template>
-        </iron-selector>
-    </template>
+    </style>
+    <iron-selector id="swipePicker" attr-for-selected="value" selected="{{selectedItem}}">
+      <template is="dom-repeat" items="{{pickerItems}}">
+        <div value="{{item.value}}">{{item.label}}</div>
+      </template>
+    </iron-selector>
+  </template>
 
-    <script>
-        Polymer({
+  <script>
+    Polymer({
 
-            is: 'skeleton-swipe-picker',
+      is: 'skeleton-swipe-picker',
 
-            properties: {
-                pickerItems: {
-                    type: Array,
-                    value: []
-                }
+      properties: {
+        pickerItems: {
+          type: Array,
+          value: [
+            {
+              label: 'One',
+              value: 11,
+              default: false
             },
-            attached(){
-                this.pickerItems = [
-                    {
-                        label: 'One',
-                        value: 1,
-                        default: false
-                    },
-                    {
-                        label: 'Two',
-                        value: 2,
-                        default: false
-                    },
-                    {
-                        label: 'Three',
-                        value: 3,
-                        default: true
-                    },
-                    {
-                        label: 'Four',
-                        value: 4,
-                        default: false
-                    }
-                ];
-                this.$.swipePicker.selected = 2;
+            {
+              label: 'Two',
+              value: 22,
+              default: false
+            },
+            {
+              label: 'Three',
+              value: 33,
+              default: true
+            },
+            {
+              label: 'Four',
+              value: 44,
+              default: false
             }
-        });
-    </script>
+          ]
+        },
+        selectedItem: {
+          type: String,
+          notify: true
+        }
+      }
+    });
+  </script>
 </dom-module>
