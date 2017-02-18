@@ -100,7 +100,7 @@
                      fallback-selection="{{fallbackSelection}}"
       >
         <template is="dom-repeat" items="{{options}}">
-          <div value="{{item.value}}" class="item" on-tap="_itemSelected">
+          <div value="{{item.value}}" class="item">
             <div class="item-text">{{item.label}}</div>
           </div>
         </template>
@@ -166,7 +166,7 @@
         }
       },
       listeners: {
-        'iron-select': "_itemSelected"
+        'iron-activate': "_itemSelected"
       },
       /**
        * Call when the item is selected
@@ -174,7 +174,7 @@
        * @private
        */
       _itemSelected() {
-        if (!!this.selected) this.fire("item-selected");
+        this.fire("item-selected");
       }
     });
   </script>
