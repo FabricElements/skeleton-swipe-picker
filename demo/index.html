@@ -20,7 +20,27 @@
       <h3>Basic skeleton-swipe-picker demo</h3>
       <demo-snippet>
         <template>
+          <style is="custom-style">
+            skeleton-swipe-picker {
+              --skeleton-swipe-picker-height: 300px;
+            }
+          </style>
           <skeleton-swipe-picker></skeleton-swipe-picker>
+        </template>
+      </demo-snippet>
+    </div>
+    <div class="vertical-section-container centered">
+      <h3>Basic skeleton-swipe-picker demo</h3>
+      <demo-snippet>
+        <template>
+          <style is="custom-style">
+            skeleton-swipe-picker[theme="dark"] {
+              --skeleton-swipe-picker-height: 300px;
+              --skeleton-swipe-picker-dark-selected-color: #2962FF;
+              background-color: #2962FF;
+            }
+          </style>
+          <skeleton-swipe-picker theme="dark"></skeleton-swipe-picker>
         </template>
       </demo-snippet>
     </div>

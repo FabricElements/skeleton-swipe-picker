@@ -1,6 +1,8 @@
 <!--suppress ALL -->
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-selector/iron-selector.html">
+<link rel="import" href="../paper-styles/typography.html">
+<link rel="import" href="../paper-styles/color.html">
 
 <!--
 `skeleton-swipe-picker`
@@ -16,6 +18,18 @@
         display: block;
         overflow-x: hidden;
         overflow-y: auto;
+        height: var(--skeleton-swipe-picker-height, auto);
+        clip-path: inset-rectangle(from top, from right, from bottom, from left, rounded-x, rounded-y);
+        -webkit-mask-image: -webkit-gradient(
+          linear, left top, left bottom,
+          color-stop(0.00, rgba(0, 0, 0, 0)),
+          color-stop(0.3, rgba(0, 0, 0, 1)),
+          color-stop(0.7, rgba(0, 0, 0, 1)),
+          color-stop(1.00, rgba(0, 0, 0, 0)));
+      }
+
+      #container {
+        padding: 50px 0;
       }
 
       iron-selector > * {
@@ -27,16 +41,70 @@
         text-align: center;
       }
 
-      .iron-selected {
-        background-color: var(--google-blue-500);
-        color: white;
+      .item {
+
+      }
+
+      .item-text {
+        @apply(--paper-font-headline);
+        padding: 0;
+        margin: 0;
+      }
+
+      @media (min-width: 768px) {
+        /* media-breakpoint-up-md */
+        /*noinspection ALL*/
+        .item-text {
+          @apply(--paper-font-display1);
+        }
+      }
+
+      /* Light Theme styles ======================= */
+      .theme-light {
+
+      }
+
+      .theme-light .item-text {
+        color: var(--skeleton-swipe-picker-light-color, --paper-grey-900);
+      }
+
+      .theme-light .iron-selected {
+        background-color: var(--skeleton-swipe-picker-light-selected-background, rgba(0,0,0,0.7));
+      }
+
+      .theme-light .iron-selected .item-text {
+        color: var(--skeleton-swipe-picker-light-selected-color, #ffffff);
+      }
+      /* Dark Theme styles ======================= */
+      .theme-dark {
+
+      }
+
+      .theme-dark .item-text {
+        color: var(--skeleton-swipe-picker-dark-color, --paper-grey-50);
+      }
+
+      .theme-dark .iron-selected {
+        background-color: var(--skeleton-swipe-picker-dark-selected-background, rgba(255,255,255,0.8));
+      }
+
+      .theme-dark .iron-selected .item-text {
+        color: var(--skeleton-swipe-picker-dark-selected-color, --paper-grey-900);
       }
     </style>
-    <iron-selector id="swipePicker" attr-for-selected="value" selected="{{selected}}">
-      <template is="dom-repeat" items="{{options}}">
-        <div value="{{item.value}}">{{item.label}}</div>
-      </template>
-    </iron-selector>
+    <div id="container" class$="theme-{{theme}}">
+      <iron-selector attr-for-selected="value"
+                     selected="{{selected}}"
+                     fallback-selection="{{fallbackSelection}}"
+      >
+        <template is="dom-repeat" items="{{options}}">
+          <div value="{{item.value}}" class="item">
+            <div class="item-text">{{item.label}}</div>
+          </div>
+        </template>
+      </iron-selector>
+    </div>
+
   </template>
 
   <script>
@@ -45,29 +113,113 @@
       is: 'skeleton-swipe-picker',
 
       properties: {
+        theme: {
+          type: String,
+          value: "light"
+        },
+        fallbackSelection: {
+          type: String,
+          value: null
+        },
         options: {
           type: Array,
           value: [
             {
-              label: 'One',
+              label: '01',
+              value: 1,
+            },
+            {
+              label: '02',
+              value: 2,
+            },
+            {
+              label: '03',
+              value: 3,
+            },
+            {
+              label: '04',
+              value: 4,
+            },
+            {
+              label: '05',
+              value: 5,
+            },
+            {
+              label: '06',
+              value: 6,
+            },
+            {
+              label: '07',
+              value: 7,
+            },
+            {
+              label: '08',
+              value: 8,
+            },
+            {
+              label: '09',
+              value: 9,
+            },
+            {
+              label: '10',
+              value: 10,
+            },
+            {
+              label: '11',
               value: 11,
-              default: false
             },
             {
-              label: 'Two',
+              label: '12',
+              value: 12,
+            },
+            {
+              label: '13',
+              value: 13,
+            },
+            {
+              label: '14',
+              value: 14,
+            },
+            {
+              label: '15',
+              value: 15,
+            },
+            {
+              label: '16',
+              value: 16,
+            },
+            {
+              label: '17',
+              value: 17,
+            },
+            {
+              label: '18',
+              value: 18,
+            },
+            {
+              label: '19',
+              value: 19,
+            },
+            {
+              label: '20',
+              value: 20,
+            },
+            {
+              label: '21',
+              value: 21,
+            },
+            {
+              label: '22',
               value: 22,
-              default: false
             },
             {
-              label: 'Three',
-              value: 33,
-              default: true
+              label: '23',
+              value: 23,
             },
             {
-              label: 'Four',
-              value: 44,
-              default: false
-            }
+              label: '24',
+              value: 24,
+            },
           ]
         },
         selected: {
