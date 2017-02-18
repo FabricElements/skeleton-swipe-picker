@@ -1,8 +1,7 @@
 <!--suppress ALL -->
-
-
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-selector/iron-selector.html">
+
 <!--
 `skeleton-swipe-picker`
 
@@ -30,11 +29,10 @@
         background-color: var(--google-blue-500);
         color: white;
       }
-
     </style>
-    <iron-selector id="swipePicker" attr-for-selected="value" selected="{{selectedItem}}">
-      <template is="dom-repeat" items="{{pickerItems}}">
-        <div value="{{item.value}}">{{item.label}}</div>
+    <iron-selector id="swipePicker" attr-for-selected="label" selected="{{selected}}">
+      <template is="dom-repeat" items="{{options}}">
+        <div label="{{item.label}}" value="{{item.value}}">{{item.label}}</div>
       </template>
     </iron-selector>
   </template>
@@ -45,7 +43,7 @@
       is: 'skeleton-swipe-picker',
 
       properties: {
-        pickerItems: {
+        options: {
           type: Array,
           value: [
             {
@@ -70,10 +68,16 @@
             }
           ]
         },
-        selectedItem: {
+        selected: {
           type: String,
           notify: true
         }
+      },
+      listeners: {
+        'iron-select': "_itemSelected"
+      },
+      _itemSelected: function () {
+        this.fire("item-selected");
       }
     });
   </script>
