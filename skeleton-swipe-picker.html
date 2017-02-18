@@ -30,9 +30,9 @@
         color: white;
       }
     </style>
-    <iron-selector id="swipePicker" attr-for-selected="label" selected="{{selected}}">
+    <iron-selector id="swipePicker" attr-for-selected="value" selected="{{selected}}">
       <template is="dom-repeat" items="{{options}}">
-        <div label="{{item.label}}" value="{{item.value}}">{{item.label}}</div>
+        <div value="{{item.value}}">{{item.label}}</div>
       </template>
     </iron-selector>
   </template>
