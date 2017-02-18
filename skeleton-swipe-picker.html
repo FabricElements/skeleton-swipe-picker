@@ -70,12 +70,13 @@
       }
 
       .theme-light .iron-selected {
-        background-color: var(--skeleton-swipe-picker-light-selected-background, rgba(0,0,0,0.7));
+        background-color: var(--skeleton-swipe-picker-light-selected-background, rgba(0, 0, 0, 0.7));
       }
 
       .theme-light .iron-selected .item-text {
         color: var(--skeleton-swipe-picker-light-selected-color, #ffffff);
       }
+
       /* Dark Theme styles ======================= */
       .theme-dark {
 
@@ -86,7 +87,7 @@
       }
 
       .theme-dark .iron-selected {
-        background-color: var(--skeleton-swipe-picker-dark-selected-background, rgba(255,255,255,0.8));
+        background-color: var(--skeleton-swipe-picker-dark-selected-background, rgba(255, 255, 255, 0.8));
       }
 
       .theme-dark .iron-selected .item-text {
@@ -114,14 +115,30 @@
       is: 'skeleton-swipe-picker',
 
       properties: {
+        /**
+         * Theme Colors: "light" or "dark"
+         **/
         theme: {
           type: String,
           value: "light"
         },
+        /**
+         * Default fallback
+         **/
         fallbackSelection: {
           type: String,
           value: null
         },
+        /**
+         * Option Selected
+         **/
+        selected: {
+          type: String,
+          notify: true
+        },
+        /**
+         * Options
+         **/
         options: {
           type: Array,
           value: [
@@ -144,95 +161,20 @@
             {
               label: '05',
               value: 5,
-            },
-            {
-              label: '06',
-              value: 6,
-            },
-            {
-              label: '07',
-              value: 7,
-            },
-            {
-              label: '08',
-              value: 8,
-            },
-            {
-              label: '09',
-              value: 9,
-            },
-            {
-              label: '10',
-              value: 10,
-            },
-            {
-              label: '11',
-              value: 11,
-            },
-            {
-              label: '12',
-              value: 12,
-            },
-            {
-              label: '13',
-              value: 13,
-            },
-            {
-              label: '14',
-              value: 14,
-            },
-            {
-              label: '15',
-              value: 15,
-            },
-            {
-              label: '16',
-              value: 16,
-            },
-            {
-              label: '17',
-              value: 17,
-            },
-            {
-              label: '18',
-              value: 18,
-            },
-            {
-              label: '19',
-              value: 19,
-            },
-            {
-              label: '20',
-              value: 20,
-            },
-            {
-              label: '21',
-              value: 21,
-            },
-            {
-              label: '22',
-              value: 22,
-            },
-            {
-              label: '23',
-              value: 23,
-            },
-            {
-              label: '24',
-              value: 24,
-            },
+            }
           ]
-        },
-        selected: {
-          type: String,
-          notify: true
         }
       },
       listeners: {
         'iron-select': "_itemSelected"
       },
-      _itemSelected: function () {
-        this.fire("item-selected");
+      /**
+       * Call when the item is selected
+       *
+       * @private
+       */
+      _itemSelected() {
+        if (!!this.selected) this.fire("item-selected");
       }
     });
   </script>
