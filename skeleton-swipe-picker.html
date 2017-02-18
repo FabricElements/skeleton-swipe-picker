@@ -99,7 +99,7 @@
                      fallback-selection="{{fallbackSelection}}"
       >
         <template is="dom-repeat" items="{{options}}">
-          <div value="{{item.value}}" class="item">
+          <div value="{{item.value}}" class="item" on-tap="_itemSelected">
             <div class="item-text">{{item.label}}</div>
           </div>
         </template>

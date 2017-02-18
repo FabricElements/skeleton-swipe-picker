@@ -2,9 +2,8 @@
   "name": "skeleton-swipe-picker",
   "main": "skeleton-swipe-picker.html",
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.4.0",
-    "iron-selector": "PolymerElements/iron-selector#^1.5.2",
-    "skin-styles": "FabricElements/skin-styles"
+    "polymer": "Polymer/polymer#^1.8.0",
+    "iron-selector": "PolymerElements/iron-selector#^1.5.2"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
